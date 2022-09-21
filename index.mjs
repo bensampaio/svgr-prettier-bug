@@ -4,15 +4,11 @@ import { fileURLToPath } from 'url';
 
 import glob from 'glob';
 import { transform } from '@svgr/core';
-import prettier from 'prettier';
 import { camelCase, upperFirst } from 'lodash-es';
-import rcfile from 'rcfile';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const iconFileExt = '.svg';
-
-const prettierConfig = rcfile('prettier');
 
 const iconsPath = path.join(__dirname, 'src', '*.svg');
 
@@ -55,33 +51,8 @@ glob(iconsToProcess.svgPath, (err, files) => {
         {
           icon: false,
           typescript: true,
-          // for more details about svgo config: https://github.com/svg/svgo
-          svgoConfig: {
-            plugins: [
-              // Keeps ID's of svgs if they are defined so they can be targeted with CSS
-              { name: 'cleanupIDs', active: false },
-              { name: 'convertColors' },
-              { name: 'convertPathData' },
-              { name: 'convertStyleToAttrs' },
-              { name: 'convertTransform' },
-              // stops adding prefix to class name, so original class in svg is kept unchanged
-              // e.g. see arrow-down-mono.react.svg and class="u-icon-m"
-              { name: 'prefixIds', active: false },
-              { name: 'mergePaths' },
-              { name: 'removeComments' },
-              { name: 'removeEmptyAttrs' },
-              { name: 'removeEmptyText' },
-              { name: 'removeEmptyContainers' },
-              { name: 'removeEmptyContainers' },
-              { name: 'removeHiddenElems' },
-              { name: 'removeUselessDefs' },
-            ],
-          },
-          prettierConfig,
           plugins: [
-            '@svgr/plugin-svgo',
             '@svgr/plugin-jsx',
-            '@svgr/plugin-prettier',
           ],
           template: tsTemplate,
         },
