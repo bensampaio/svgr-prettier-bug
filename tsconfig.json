@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "strict": true,
+    "outDir": "./dist",
+    "lib": ["es2017", "dom"],
+    "jsx": "react",
+    "noEmit": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "typeRoots": ["./node_modules/@types"],
+    "esModuleInterop": true
+  },
+  "include": ["dist/*.tsx"],
+  "exclude": [
+    "node_modules"
+  ]
+}
